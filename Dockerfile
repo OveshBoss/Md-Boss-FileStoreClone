@@ -2,15 +2,23 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-FROM python:3.10.8-slim-buster
+# Buster ki jagah Bullseye use karein, ye stable hai
+FROM python:3.10-slim-bullseye
 
-RUN apt update && apt upgrade -y
-RUN apt install git -y
+# System packages install karein (Optimization ke saath)
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y git python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+# Requirements pehle copy karein taaki cache use ho sake
 COPY requirements.txt /requirements.txt
 
-RUN cd /
-RUN pip3 install -U pip && pip3 install -U -r requirements.txt
-RUN mkdir /VJ-File-Store
+# Pip upgrade aur requirements install karein
+RUN pip3 install -U pip && pip3 install --no-cache-dir -U -r /requirements.txt
+
+# Workdir setup karein
 WORKDIR /VJ-File-Store
 COPY . /VJ-File-Store
-CMD ["python", "bot.py"]
+
+# Bot start karein
+CMD ["python3", "bot.py"]
