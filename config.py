@@ -28,10 +28,10 @@ BOT_USERNAME = environ.get("BOT_USERNAME", "") # without @
 PORT = environ.get("PORT", "8080")
 
 # Clone Info :-
-CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
+CLONE_MODE = bool(environ.get('CLONE_MODE', True)) # Set True or False
 
 # If Clone Mode Is True Then Fill All Required Variable, If False Then Don't Fill.
-CLONE_DB_URI = environ.get("CLONE_DB_URI", "")
+CLONE_DB_URI = environ.get("CLONE_DB_URI", "mongodb+srv://bosstgbots_db_user:DiRFdWd2U9kHoP4j@cluster0.g6p3m4j.mongodb.net/?appName=Cluster0")
 CDB_NAME = environ.get("CDB_NAME", "clonetechvj")
 
 # Database Information
