@@ -16,6 +16,10 @@ def is_enabled(value, default):
     else:
         return default
       
+# --- SYSTEM CHECK (FIXED IMPORT ERROR) ---
+# Ye line add ki hai taaki 'ImportError: cannot import name ON_HEROKU' na aaye
+ON_HEROKU = is_enabled((environ.get('ON_HEROKU', "True")), True)
+
 # --- BOT INFORMATION ---
 API_ID = int(environ.get("API_ID", ""))
 API_HASH = environ.get("API_HASH", "")
@@ -60,11 +64,10 @@ MULTI_CLIENT = True
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '10')) 
 PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))
 
-# Using DisCloud for 10x Speed than Render
-# Slash (/) at the end is added to prevent DNS errors
+# Fast URL with Slash Fix to prevent DNS errors
 URL = environ.get("URL", "https://discloud.app/") 
 
 # --- PERFORMANCE BOOST SETTINGS ---
-WORKERS = int(environ.get("WORKERS", "64")) # Max speed for high traffic
-MAX_CONCURRENT_TRANSMISSIONS = int(environ.get("MAX_CONCURRENT_TRANSMISSIONS", "20"))
-
+# Bot ki link generation speed badhane ke liye 100 workers set kiye hain
+WORKERS = int(environ.get("WORKERS", "100")) 
+MAX_CONCURRENT_TRANSMISSIONS = int(environ.get("MAX_CONCURRENT_TRANSMISSIONS", "50"))
