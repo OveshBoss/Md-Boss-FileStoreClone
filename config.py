@@ -49,11 +49,17 @@ CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", f"{script.CAPTION}")
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
-# --- WEB & URL SETTINGS (FIXED IMPORT ERROR) ---
-# Ye niche wali do lines error khatam kar dengi
+# --- WEB & URL SETTINGS (FIXED FOR NO SHORTENER) ---
 WEBSITE_URL = environ.get("WEBSITE_URL", "https://discloud.app/") 
 WEBSITE_URL_MODE = is_enabled((environ.get('WEBSITE_URL_MODE', "False")), False)
 URL = environ.get("URL", "https://discloud.app/") 
+
+# --- SHORTENER SETTINGS (ADDED TO FIX ERROR) ---
+# Inhe empty rakha hai taaki ads na aayein
+SHORTLINK_URL = environ.get("SHORTLINK_URL", "")
+SHORTLINK_API = environ.get("SHORTLINK_API", "")
+VERIFY_EXPIRE = int(environ.get('VERIFY_EXPIRE', "86400")) # 24 Hours
+IS_VERIFY = is_enabled((environ.get('IS_VERIFY', "False")), False) # Isse ads/verification off ho jayegi
 
 # --- POWERFUL STREAM CONFIG ---
 STREAM_MODE = bool(environ.get('STREAM_MODE', True)) 
