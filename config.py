@@ -80,7 +80,7 @@ if 'DYNO' in environ:
     ON_HEROKU = True
 else:
     ON_HEROKU = False
-URL = environ.get("URL", "https://md-boss-filestoreclone-1.onrender.com")
+URL = environ.get("URL", "https://md-boss-filestoreclone-1.onrender.com/")
 
 
 # Don't Remove Credit Tg - @VJ_Bots
