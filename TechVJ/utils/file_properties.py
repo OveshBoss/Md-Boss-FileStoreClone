@@ -2,14 +2,12 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-
 from pyrogram import Client
 from typing import Any, Optional
 from pyrogram.types import Message
 from pyrogram.file_id import FileId
 from pyrogram.raw.types.messages import Messages
 from TechVJ.server.exceptions import FIleNotFound
-
 
 async def parse_file_id(message: "Message") -> Optional[FileId]:
     media = get_media_from_message(message)
@@ -28,9 +26,14 @@ async def get_file_ids(client: Client, chat_id: int, id: int) -> Optional[FileId
     media = get_media_from_message(message)
     file_unique_id = await parse_file_unique_id(message)
     file_id = await parse_file_id(message)
+    
+    # Yahan hum clean name ka use karenge file_id properties set karte waqt
+    raw_name = getattr(media, "file_name", "")
+    clean_name = raw_name.replace("@VJ_Botz", "").replace("_", " ").strip()
+    
     setattr(file_id, "file_size", getattr(media, "file_size", 0))
     setattr(file_id, "mime_type", getattr(media, "mime_type", ""))
-    setattr(file_id, "file_name", getattr(media, "file_name", ""))
+    setattr(file_id, "file_name", clean_name) # Cleaned Name Set Kiya
     setattr(file_id, "unique_id", file_unique_id)
     return file_id
 
@@ -50,14 +53,17 @@ def get_media_from_message(message: "Message") -> Any:
         if media:
             return media
 
-
 def get_hash(media_msg: Message) -> str:
     media = get_media_from_message(media_msg)
     return getattr(media, "file_unique_id", "")[:6]
 
+# --- YE SECTION UPDATE KIYA HAI ---
 def get_name(media_msg: Message) -> str:
     media = get_media_from_message(media_msg)
-    return getattr(media, 'file_name', "")
+    file_name = getattr(media, 'file_name', "")
+    # Sabse pehle @VJ_Botz hatayega, phir underscores ko space mein badlega
+    clean_name = file_name.replace("@VJ_Botz", "").replace("_", " ").strip()
+    return clean_name
 
 def get_media_file_size(m):
     media = get_media_from_message(m)
