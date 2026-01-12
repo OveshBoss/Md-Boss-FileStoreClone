@@ -33,7 +33,7 @@ PORT = environ.get("PORT", "8080")
 CLONE_MODE = bool(environ.get('CLONE_MODE', True)) 
 CLONE_DB_URI = environ.get("CLONE_DB_URI", "mongodb+srv://bosstgbots_db_user:DiRFdWd2U9kHoP4j@cluster0.g6p3m4j.mongodb.net/?appName=Cluster0")
 CDB_NAME = environ.get("CDB_NAME", "clonetechvj")
-DB_URI = environ.get("DB_URI", "mongodb+srv://OnlyBoss:OveshBoss@cluster0.dtrrfnm.mongodb.net/?appName=Cluster0")
+DB_URI = environ.get("DB_URI", "mongodb+srv://peyofip118_db_user:OYjWsF84H4ah69Gd@cluster0.scovtfc.mongodb.net/?appName=Cluster0")
 DB_NAME = environ.get("DB_NAME", "techvjbotz")
 
 # --- AUTO DELETE SETTINGS ---
